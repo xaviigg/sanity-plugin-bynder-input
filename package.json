@@ -1,18 +1,21 @@
 {
-  "name": "sanity-plugin-bynder-input",
-  "version": "2.3.1",
-  "description": "!bynder demo",
+  "name": "@xaviigg/sanity-plugin-bynder-input",
+  "version": "0.0.2",
+  "description": "Fork of sanity-plugin-bynder-input with GIF support",
   "keywords": [
     "sanity",
     "sanity-plugin"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "homepage": "https://github.com/sanity-io/sanity-plugin-bynder-input#readme",
   "bugs": {
     "url": "https://github.com/sanity-io/sanity-plugin-bynder-input/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:sanity-io/sanity-plugin-bynder-input.git"
+    "url": "git+ssh://git@github.com/sanity-io/sanity-plugin-bynder-input.git"
   },
   "license": "MIT",
   "author": "Sanity.io <hello@sanity.io>",
