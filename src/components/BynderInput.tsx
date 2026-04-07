@@ -28,26 +28,23 @@ export function BynderInput(props: BynderInputProps) {
     onChange(PatchEvent.from([unset()]));
   };
 
-  const getGifUrlFromAsset = (
-    asset: Record<string, any>,
-    portalDomain: string
-  ): string | null => {
-    const mediaId =
-      asset.derivatives?.webImage?.match?.(/\/m\/([^/]+)\//)?.[1] ??
-      asset.files?.webImage?.url?.match(/\/m\/([^/]+)\//)?.[1];
+  const getGifUrlFromAsset = (asset: Record<string, any>): string | null => {
+    return asset.files?.gif?.url ?? asset.files?.original?.url ?? null;
+  };
 
-    if (!mediaId || !asset.name) return null;
-
-    return `${portalDomain}/m/${mediaId}/${asset.name}.gif`;
+  const isGif = (asset: Record<string, any>): boolean => {
+    if (Array.isArray(asset.extensions))
+      return asset.extensions.includes('gif');
+    if (typeof asset.extensions === 'string') return asset.extensions === 'gif';
+    if (typeof asset.extension === 'string') return asset.extension === 'gif';
+    return false;
   };
 
   const getPreviewUrl = (
     asset: Record<string, any>,
-    addInfo: Record<string, any>,
-    portalDomain: string
+    addInfo: Record<string, any>
   ) => {
-    if (asset.extensions?.includes('gif'))
-      return getGifUrlFromAsset(asset, portalDomain);
+    if (isGif(asset)) return getGifUrlFromAsset(asset);
     switch (asset.type) {
       case 'VIDEO':
         return asset.previewUrls[0];
@@ -107,7 +104,7 @@ export function BynderInput(props: BynderInputProps) {
         name: asset.name,
         databaseId: asset.databaseId,
         type: asset.type,
-        previewUrl: getPreviewUrl(asset, addInfo, pluginConfig.portalDomain),
+        previewUrl: getPreviewUrl(asset, addInfo),
         previewImg: webImage.url,
         datUrl: asset.files.transformBaseUrl?.url,
         videoUrl: getVideoUrl(asset),
