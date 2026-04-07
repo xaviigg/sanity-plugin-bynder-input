@@ -1,6 +1,6 @@
 {
   "name": "@xaviigg/sanity-plugin-bynder-input",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Fork of sanity-plugin-bynder-input with GIF support",
   "keywords": [
     "sanity",
@@ -82,7 +82,7 @@
     "react-dom": "^18",
     "rimraf": "^3.0.2",
     "sanity": "^3.0.0",
-    "typescript": "^4.9.4"
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "react": "^18",
